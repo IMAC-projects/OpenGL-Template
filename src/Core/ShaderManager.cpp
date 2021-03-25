@@ -9,7 +9,7 @@
 ShaderManager::ShaderManager()
 	: m_shaderWatcher([this](const char* path) { compile_shader(path); })
 {
-	setShaderPath("shader-examples/simple3D.frag");
+	setShaderPath("myShaders/c3ga Sphere.frag");
 }
 
 void ShaderManager::compile_shader(const char* path) {
@@ -94,6 +94,16 @@ void ShaderManager::ImGui() {
 		setShaderPath(path);
 	}
 	ImGui::Separator();
+	if (m_shaderWatcher.path().string().compare("myShaders/c3ga Complex Sphere.frag")) {
+		if (ImGui::Button("Wow")) {
+			setShaderPath("myShaders/c3ga Complex Sphere.frag");
+		}
+	}
+	else {
+		if (ImGui::Button("Un-Wow")) {
+			setShaderPath("myShaders/c3ga Sphere.frag");
+		}
+	}
 	for (auto& param : _dynamic_params) {
 		param->ImGui({}, []() {});
 	}
